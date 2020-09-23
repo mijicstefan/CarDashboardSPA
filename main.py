@@ -19,7 +19,6 @@ import time
 from components.main_window import Window
 from pyside_material import apply_stylesheet
  
-
 if __name__ == "__main__":
     myApp = QApplication(sys.argv)
     myApp.setWindowIcon(QIcon("images/img1.png"))

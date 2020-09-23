@@ -108,6 +108,7 @@ class Window(QWidget):
                 start_time = time.time()
             self.gear_logic(start_time)
 
+    # Shifting gears based on velocity treshold limit.
     def gear_logic(self, start_time):
         shifting_gears = [
             {"gear": "1", "next_gear": "2", "prev_gear": "Car has stopped."},
@@ -118,6 +119,7 @@ class Window(QWidget):
             {"gear": "6", "next_gear": "Gear limit", "prev_gear": "5"}
         ]
 
+        # Logging al velocity changes while car is moving.
         data_logs = SinglyLinkedList()
 
         # Max acceleration rate based on BMW X6, 7 m/s^2.
@@ -126,10 +128,10 @@ class Window(QWidget):
         # Throttle percentage, it simulates how hard the gas pedal has being pressed.
         throttle_percentage = self.slider.value()
 
-        # Based on percetage that which represents how hard the pedal has being pressed,
+        # Based on percetage which represents how hard the pedal has being pressed
         current_acceleration = (throttle_percentage /
                                 100) * max_acceleration_rate
-        # For acceleration we must use start time and time.
+        # For acceleration we must use start time and end time.
         end_time = time.time()
         final_time = end_time - start_time
         # average speed is: a * t
@@ -186,13 +188,14 @@ class Window(QWidget):
             data_logs.append({"gear": 6, "speeed": real_speed})
         print('Current speed is: {}'.format(real_speed))
 
+        # Update kmph number in GUI
         self.lcd_speed.display(int(real_speed))
 
+        # Handle log data
         for data_log in data_logs:
             self.speed_logs_databse.append(data_log)
 
     # Brake thread is responsible for braking when Brake action is called.
-
     def brakes_thread(self):
         brake_thread = threading.Thread(target=self.use_brakes)
         brake_thread.start()
