@@ -1,3 +1,16 @@
+##################################################
+## Car Dashboard
+##################################################
+## Subject: Data Structures and Algorithms
+##################################################
+## Author: Stefan Mijic, index: 2018271328
+## Copyright: Stefan Mijic
+
+## License: {license}
+## Version: v 1.0.0.
+## Email: stefanmijic30@gmail.com
+##################################################
+
 from PySide2.QtWidgets import QApplication, QWidget
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
